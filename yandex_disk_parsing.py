@@ -5,7 +5,8 @@ import urllib
 
 
 def download_jpeg(public_link, save_directory, patth, ext, str_num):
-    patth = 'Датасет Аэрозрение v.1 — отдельные снимки/02_second_part_DataSet_Human_Rescue/images/'
+    patth = 'Новая папка/Датасет Аэрозрение v.1 — отдельные снимки/02_second_part_DataSet_Human_Rescue/images/'
+
     final_url = 'https://cloud-api.yandex.net/v1/disk/public/resources/download' \
                 + '?public_key=' + urllib.parse.quote(public_link) + '&path=/' + urllib.parse.quote(patth+str_num+ext)
 
@@ -52,16 +53,14 @@ def download_file(public_link, save_directory, patth, ext, str_num):
 
 
 if __name__ == "__main__":
-    # public_link = 'https://disk.yandex.ru/d/vX2zgJl8-XB0Og'
     public_link = 'https://disk.yandex.ru/d/bN06_6ncEXTLIw'
     patth = 'Новая папка/Датасет Аэрозрение v.1 — отдельные снимки/02_second_part_DataSet_Human_Rescue/labels/'
-    save_directory = '/home/dima/data3/'  # Путь к папке куда сохранять
+    save_directory = '/home/dima/data'  # Путь к папке куда сохранять
 
-    if not os.path.exists(save_directory):
-        os.makedirs(save_directory)
-    for number in range(1000):  # 10000 - сколько файлов 
+    if not os.path.exists(save_directory + '54/'):
+        os.makedirs(save_directory + '54/')
+    for number in range(77000, 100000):  #  сколько файлов он попробует скачать. Нужно сюда поставить максимальное число в папке
+        print(number)
         str_num = str(number).zfill(6)
         temp_path = patth + str_num
-        download_file(public_link, save_directory, temp_path, '.txt', str_num)
-
-        print(number)
+        download_file(public_link, save_directory +'54/', temp_path, '.txt', str_num)
